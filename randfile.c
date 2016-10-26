@@ -21,9 +21,9 @@ int main() {
   int i;
   for(i = 0; i < 10; i++) {
     foo[i] = ranGen();
-    printf("Getting for loop\n");
-    printf("random %d: %d", i, foo[i]);
+    printf("\nGetting for loop\n");
+    printf("random %d: %d\n", i, foo[i]);
   }
 
-  return 1;
+  return 0;
 }
