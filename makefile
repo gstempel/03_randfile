@@ -1,5 +1,7 @@
+GCC = gcc
+
 rantest: randfile.c
-	gcc randfile.c -o rantest
+	$(GCC) randfile.c -o rantest
 
 run: rantest
 	./rantest

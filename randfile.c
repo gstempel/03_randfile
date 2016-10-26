@@ -2,16 +2,14 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <sys/stat.h>
 
-unsigned* ranGen() { //get rand nums from /dev/random
+unsigned ranGen() { //get rand nums from /dev/random
   int data = open("/dev/random", O_RDONLY);
-  printf("opening works\n");
-  unsigned *ret;
-  read(data, ret, 4);
-  printf("%u\n", *ret);
-  printf("reading works\n");
+  unsigned ret;
+  read(data, &ret, 4);
+  printf("%u\n", ret);
   close(data);
-  printf("closing works\n");
   return ret;
 }
 
@@ -24,8 +22,7 @@ int main() {
   int i;
   for(i = 0; i < size; i++) {
     foo[i] = ranGen();
-    printf("\nGetting for loop\n");
-    printf("random %d: %d\n", i, foo[i]);
+    printf("random %d: %u\n", i, foo[i]);
   }
 
   //STEP 2: WRITE THIS ARRAY OF RAND NUMS TO FILE
