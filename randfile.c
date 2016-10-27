@@ -16,9 +16,9 @@ unsigned ranGen() { //get rand nums from /dev/random
 int main() {
   //1: CREATE ARRAY OF RAND NUMS
   umask(0);
-  int size = 5; //edit for entropy/testing purposes
-  unsigned* foo[size];
-  printf("Generating random numbers: \n");
+  int size = 10; //edit for entropy/testing purposes
+  unsigned foo[size];
+  printf("\nGenerating random numbers: \n");
   int i;
   for(i = 0; i < size; i++) {
     foo[i] = ranGen();
@@ -26,14 +26,13 @@ int main() {
   }
 
   //STEP 2: WRITE THIS ARRAY OF RAND NUMS TO FILE
-  printf("Writing numbers to file...\n");
+  printf("\nWriting numbers to file...\n");
   int intermed = open("intermed.txt",O_WRONLY | O_CREAT, 0666);
-  //printf("foo[0]: %d\n",foo[0]);
   write(intermed, foo, 4*size); //okay this is writin but how write actual num?
-  close(intermed);
+  intermed = close(intermed);
   intermed = open("intermed.txt", O_RDONLY, 0666);
-  unsigned* boo[size];
-  printf("Reading numbers from file...\n");
+  unsigned boo[size];
+  printf("\nReading numbers from file...\nVerification: \n");
   read(intermed, boo, 4*size);
   for(i=0; i < size; i++) {
     printf("random %d: %u\n", i, boo[i]);
